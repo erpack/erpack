@@ -1,0 +1,2368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Pro - Premium Dashboard</title>
+    <style>
+        :root {
+            /* Premium Color Palette */
+            --primary-50: #eef4ff;
+            --primary-100: #dae6ff;
+            --primary-200: #bdd4ff;
+            --primary-300: #90baff;
+            --primary-400: #5c95ff;
+            --primary-500: #366eff;
+            --primary-600: #1d4ed8;
+            --primary-700: #1e40af;
+            --primary-800: #1e3a8a;
+            --primary-900: #1e3a8a;
+            
+            /* Success Colors */
+            --success-50: #ecfdf5;
+            --success-100: #d1fae5;
+            --success-200: #a7f3d0;
+            --success-300: #6ee7b7;
+            --success-400: #34d399;
+            --success-500: #10b981;
+            --success-600: #059669;
+            --success-700: #047857;
+            --success-800: #065f46;
+            --success-900: #064e3b;
+            
+            /* Warning Colors */
+            --warning-50: #fffbeb;
+            --warning-100: #fef3c7;
+            --warning-200: #fde68a;
+            --warning-300: #fcd34d;
+            --warning-400: #fbbf24;
+            --warning-500: #f59e0b;
+            --warning-600: #d97706;
+            --warning-700: #b45309;
+            --warning-800: #92400e;
+            --warning-900: #78350f;
+            
+            /* Danger Colors */
+            --danger-50: #fef2f2;
+            --danger-100: #fee2e2;
+            --danger-200: #fecaca;
+            --danger-300: #fca5a5;
+            --danger-400: #f87171;
+            --danger-500: #ef4444;
+            --danger-600: #dc2626;
+            --danger-700: #b91c1c;
+            --danger-800: #991b1b;
+            --danger-900: #7f1d1d;
+            
+            /* Light Mode */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-accent: #e2e8f0;
+            --bg-glass: rgba(255, 255, 255, 0.95);
+            --bg-glass-strong: rgba(255, 255, 255, 0.98);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #94a3b8;
+            --border-color: rgba(226, 232, 240, 0.6);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 40px rgba(54, 110, 255, 0.15);
+            
+            /* Layout */
+            --sidebar-width: 280px;
+            --header-height: 80px;
+            --bottom-nav-height: 85px;
+            --border-radius: 16px;
+            --border-radius-lg: 20px;
+            --border-radius-xl: 24px;
+            --border-radius-2xl: 28px;
+
+            /* Premium Dashboard Variables */
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --glass-backdrop: blur(24px) saturate(180%);
+            
+            --glow-primary: 0 0 60px rgba(54, 110, 255, 0.4);
+            --glow-success: 0 0 60px rgba(16, 185, 129, 0.4);
+            --glow-warning: 0 0 60px rgba(245, 158, 11, 0.4);
+            --glow-danger: 0 0 60px rgba(239, 68, 68, 0.4);
+            
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-warning: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-danger: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-premium: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --transition-elastic: all 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --bg-accent: #262626;
+            --bg-glass: rgba(10, 10, 10, 0.95);
+            --bg-glass-strong: rgba(10, 10, 10, 0.98);
+            --text-primary: #ffffff;
+            --text-secondary: #a3a3a3;
+            --text-tertiary: #737373;
+            --border-color: rgba(38, 38, 38, 0.6);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 40px rgba(54, 110, 255, 0.35);
+
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            letter-spacing: -0.01em;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Premium Dashboard Header */
+        .dashboard-header {
+            position: relative;
+            padding: 2rem 1rem 4rem;
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.1) 0%, 
+                rgba(118, 75, 162, 0.1) 50%, 
+                rgba(240, 147, 251, 0.1) 100%);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23667eea' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-10px, -10px) rotate(1deg); }
+            50% { transform: translate(10px, -5px) rotate(-1deg); }
+            75% { transform: translate(-5px, 10px) rotate(0.5deg); }
+        }
+
+        .dashboard-header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dashboard-greeting {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            opacity: 0;
+            animation: slideUp 0.6s ease-out 0.2s forwards;
+        }
+
+        .dashboard-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            background: var(--gradient-premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            opacity: 0;
+            animation: slideUp 0.6s ease-out 0.4s forwards;
+        }
+
+        .dashboard-subtitle {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+            opacity: 0;
+            animation: slideUp 0.6s ease-out 0.6s forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Premium Stats Grid */
+        .premium-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .premium-stat-card {
+            position: relative;
+            background: var(--bg-glass);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-2xl);
+            padding: 2rem;
+            transition: var(--transition-smooth);
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInScale 0.8s ease-out forwards;
+        }
+
+        .premium-stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .premium-stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .premium-stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .premium-stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .premium-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-gradient);
+            transition: height 0.4s ease;
+        }
+
+        .premium-stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: var(--card-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: var(--border-radius-2xl);
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        .premium-stat-card.primary {
+            --card-gradient: var(--gradient-primary);
+        }
+
+        .premium-stat-card.success {
+            --card-gradient: var(--gradient-success);
+        }
+
+        .premium-stat-card.warning {
+            --card-gradient: var(--gradient-warning);
+        }
+
+        .premium-stat-card.danger {
+            --card-gradient: var(--gradient-danger);
+        }
+
+        .premium-stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .premium-stat-card:hover::before {
+            height: 8px;
+        }
+
+        .premium-stat-card:hover::after {
+            opacity: 0.15;
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--card-gradient);
+            border-radius: var(--border-radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: white;
+            position: relative;
+            transition: var(--transition-bounce);
+        }
+
+        .premium-stat-card:hover .stat-card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .stat-trend-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .trend-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .trend-up {
+            color: var(--success-500);
+        }
+
+        .trend-down {
+            color: var(--danger-500);
+        }
+
+        .trend-neutral {
+            color: var(--warning-500);
+        }
+
+        .stat-value {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            background: var(--card-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .stat-description {
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        /* Premium Chart Section */
+        .premium-chart-section {
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .chart-container {
+            background: var(--bg-glass);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-2xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chart-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .chart-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            background: var(--bg-glass);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .chart-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: var(--primary-500);
+            color: white;
+            border-color: var(--primary-500);
+        }
+
+        .chart-button.primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+        }
+
+        /* Chart Tabs */
+        .chart-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .chart-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chart-tab {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.6s ease;
+            border-radius: var(--border-radius);
+        }
+
+        .chart-tab:hover::before,
+        .chart-tab.active::before {
+            left: 0;
+        }
+
+        .chart-tab:hover,
+        .chart-tab.active {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .chart-tab span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Chart Canvas */
+        .chart-canvas-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            overflow: hidden;
+        }
+
+        .chart-canvas-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 50%, rgba(240, 147, 251, 0.05) 100%);
+            border-radius: var(--border-radius);
+            pointer-events: none;
+        }
+
+        #stockChart {
+            position: relative;
+            z-index: 2;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Chart Insights */
+        .chart-insights {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .insight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .insight-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .insight-content {
+            flex: 1;
+        }
+
+        .insight-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-text {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        /* Premium Data Table */
+        .premium-table-container {
+            background: var(--bg-glass);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            margin: 0 1rem;
+        }
+
+        .premium-table-header {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .premium-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .premium-table th {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            color: var(--text-primary);
+            padding: 1.5rem 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-bottom: 1px solid var(--glass-border);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .premium-table td {
+            padding: 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+            transition: var(--transition-smooth);
+        }
+
+        .premium-table tbody tr {
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .premium-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px);
+        }
+
+        .premium-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Premium Status Badges */
+        .premium-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-status-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .premium-status-badge:hover::before {
+            left: 100%;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-high {
+            background: var(--success-100);
+            color: var(--success-700);
+            border-color: var(--success-200);
+        }
+
+        .status-high .status-dot {
+            background: var(--success-500);
+        }
+
+        .status-high .status-dot::after {
+            background: var(--success-500);
+        }
+
+        .status-medium {
+            background: var(--warning-100);
+            color: var(--warning-700);
+            border-color: var(--warning-200);
+        }
+
+        .status-medium .status-dot {
+            background: var(--warning-500);
+        }
+
+        .status-medium .status-dot::after {
+            background: var(--warning-500);
+        }
+
+        .status-low {
+            background: var(--danger-100);
+            color: var(--danger-700);
+            border-color: var(--danger-200);
+        }
+
+        .status-low .status-dot {
+            background: var(--danger-500);
+        }
+
+        .status-low .status-dot::after {
+            background: var(--danger-500);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        /* Dark Theme Adjustments */
+        [data-theme="dark"] .status-high {
+            background: var(--success-900);
+            color: var(--success-300);
+            border-color: var(--success-700);
+        }
+
+        [data-theme="dark"] .status-medium {
+            background: var(--warning-900);
+            color: var(--warning-300);
+            border-color: var(--warning-700);
+        }
+
+        [data-theme="dark"] .status-low {
+            background: var(--danger-900);
+            color: var(--danger-300);
+            border-color: var(--danger-700);
+        }
+
+        /* Premium Empty State */
+        .premium-empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-icon-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .empty-icon-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: 0.3;
+            filter: blur(20px);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .empty-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .empty-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .empty-action {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .empty-action:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--glow-primary);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 1rem;
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--bg-glass);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-2xl);
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-2xl);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        /* Filter Modal Styles */
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+
+        .filter-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .filter-input,
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-input:focus,
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px rgba(54, 110, 255, 0.1);
+        }
+
+        .filter-checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .filter-checkbox:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .filter-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-500);
+        }
+
+        .filter-checkbox label {
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn.primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .filter-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Analyze Modal Styles */
+        .analyze-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .analyze-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .analyze-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .analyze-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .analyze-card-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .analyze-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .analyze-card-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .analyze-card-description {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .analyze-insights {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .analyze-insights-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .insight-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .insight-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-500);
+        }
+
+        .insight-point-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .insight-point-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Responsive Design - Mobile First */
+        
+        /* Small devices (landscape phones, 576px and up) */
+        @media (min-width: 576px) {
+            .dashboard-header {
+                padding: 3rem 2rem 5rem;
+            }
+
+            .premium-stats-grid {
+                padding: 0 2rem;
+            }
+
+            .premium-chart-section,
+            .premium-table-container {
+                margin: 0 2rem 3rem;
+            }
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) {
+            .dashboard-header {
+                padding: 4rem 2rem 6rem;
+            }
+
+            .premium-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .chart-header {
+                flex-wrap: nowrap;
+            }
+
+            .chart-tabs {
+                overflow-x: visible;
+            }
+
+            .chart-canvas-container {
+                height: 450px;
+            }
+
+            .premium-table-header {
+                flex-wrap: nowrap;
+            }
+
+            .premium-table th,
+            .premium-table td {
+                padding: 1.5rem 2rem;
+            }
+        }
+
+        /* Large devices (desktops, 992px and up) */
+        @media (min-width: 992px) {
+            .premium-stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+                padding: 0 3rem;
+            }
+
+            .premium-chart-section {
+                padding: 0 3rem;
+            }
+
+            .chart-canvas-container {
+                height: 500px;
+            }
+
+            .premium-table-container {
+                margin: 0 3rem;
+            }
+
+            .dashboard-header {
+                padding: 5rem 3rem 7rem;
+            }
+        }
+
+        /* Extra large devices (large desktops, 1200px and up) */
+        @media (min-width: 1200px) {
+            .dashboard-header-content {
+                max-width: 900px;
+            }
+
+            .premium-stats-grid {
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .premium-chart-section {
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .chart-canvas-container {
+                height: 550px;
+            }
+
+            .premium-table-container {
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 3rem;
+            }
+        }
+
+        /* Mobile Chart Optimizations */
+        @media (max-width: 767px) {
+            .chart-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .chart-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .chart-canvas-container {
+                height: 300px;
+                padding: 0.5rem;
+            }
+
+            .chart-tabs {
+                margin-bottom: 1rem;
+            }
+
+            .chart-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .insight-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+        }
+
+        /* Mobile Modal Optimizations */
+        @media (max-width: 767px) {
+            .modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+                max-height: 90vh;
+            }
+
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-actions {
+                flex-direction: column;
+            }
+
+            .analyze-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-skeleton {
+            background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-accent) 50%, var(--bg-secondary) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: var(--border-radius);
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Micro-interactions */
+        .interactive-element {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-element::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .interactive-element:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Theme Toggle Improvements */
+        .theme-toggle {
+            background: var(--bg-glass);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--glass-border);
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Premium notification improvements */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            color: white;
+            font-weight: 600;
+            z-index: 3000;
+            animation: slideInNotification 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: var(--shadow-2xl);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 400px;
+            min-width: 300px;
+        }
+
+        @keyframes slideInNotification {
+            from { 
+                transform: translateX(100%) scale(0.8); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateX(0) scale(1); 
+                opacity: 1; 
+            }
+        }
+
+        .notification.success { 
+            background: linear-gradient(135deg, var(--success-500), var(--success-600)); 
+        }
+        .notification.error { 
+            background: linear-gradient(135deg, var(--danger-500), var(--danger-600)); 
+        }
+        .notification.info { 
+            background: linear-gradient(135deg, var(--primary-500), var(--primary-600)); 
+        }
+        .notification.warning { 
+            background: linear-gradient(135deg, var(--warning-500), var(--warning-600)); 
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Dashboard -->
+    <div id="dashboard" class="dashboard-section">
+        <!-- Premium Header -->
+        <div class="dashboard-header">
+            <div class="dashboard-header-content">
+                <div class="dashboard-greeting">Selamat Datang Kembali</div>
+                <h1 class="dashboard-title">Dashboard Inventory</h1>
+                <p class="dashboard-subtitle">
+                    Monitoring real-time inventory dengan teknologi modern dan analitik mendalam
+                </p>
+            </div>
+        </div>
+
+        <!-- Premium Stats Grid -->
+        <div class="premium-stats-grid">
+            <div class="premium-stat-card primary interactive-element">
+                <div class="stat-card-header">
+                    <div class="stat-card-icon">📦</div>
+                    <div class="stat-trend-indicator">
+                        <span class="trend-arrow trend-up">↗</span>
+                        <span>+12%</span>
+                    </div>
+                </div>
+                <div class="stat-value" id="totalItems">0</div>
+                <div class="stat-label">Total Items</div>
+                <div class="stat-description">Jumlah produk dalam sistem inventory</div>
+            </div>
+
+            <div class="premium-stat-card success interactive-element">
+                <div class="stat-card-header">
+                    <div class="stat-card-icon">📈</div>
+                    <div class="stat-trend-indicator">
+                        <span class="trend-arrow trend-up">↗</span>
+                        <span>+8%</span>
+                    </div>
+                </div>
+                <div class="stat-value" id="totalStockIn">0</div>
+                <div class="stat-label">Stock In Today</div>
+                <div class="stat-description">Barang masuk hari ini</div>
+            </div>
+
+            <div class="premium-stat-card warning interactive-element">
+                <div class="stat-card-header">
+                    <div class="stat-card-icon">📉</div>
+                    <div class="stat-trend-indicator">
+                        <span class="trend-arrow trend-neutral">→</span>
+                        <span>-2%</span>
+                    </div>
+                </div>
+                <div class="stat-value" id="totalStockOut">0</div>
+                <div class="stat-label">Stock Out Today</div>
+                <div class="stat-description">Barang keluar hari ini</div>
+            </div>
+
+            <div class="premium-stat-card danger interactive-element">
+                <div class="stat-card-header">
+                    <div class="stat-card-icon">⚠️</div>
+                    <div class="stat-trend-indicator">
+                        <span class="trend-arrow trend-down">↘</span>
+                        <span>-5%</span>
+                    </div>
+                </div>
+                <div class="stat-value" id="lowStockItems">0</div>
+                <div class="stat-label">Low Stock Alert</div>
+                <div class="stat-description">Item dengan stok menipis</div>
+            </div>
+        </div>
+
+        <!-- Premium Chart Section -->
+        <div class="premium-chart-section">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2 class="chart-title">
+                        📊 Stock Overview Analytics
+                    </h2>
+                    <div class="chart-actions">
+                        <button class="chart-button primary" onclick="refreshCharts()">🔄 Refresh</button>
+                    </div>
+                </div>
+                
+                <!-- Chart Tabs -->
+                <div class="chart-tabs">
+                    <button class="chart-tab active" onclick="switchChart('trend')" id="trendTab">
+                        <span>📈 Stock Trend</span>
+                    </button>
+                    <button class="chart-tab" onclick="switchChart('distribution')" id="distributionTab">
+                        <span>📊 Stock Distribution</span>
+                    </button>
+                    <button class="chart-tab" onclick="switchChart('movement')" id="movementTab">
+                        <span>🔄 Movement Analysis</span>
+                    </button>
+                </div>
+
+                <!-- Chart Canvas Container -->
+                <div class="chart-canvas-container">
+                    <canvas id="stockChart" width="400" height="200"></canvas>
+                </div>
+
+                <!-- Chart Insights -->
+                <div class="chart-insights">
+                    <div class="insight-item">
+                        <div class="insight-icon">💡</div>
+                        <div class="insight-content">
+                            <div class="insight-title">Smart Insight</div>
+                            <div class="insight-text" id="chartInsight">
+                                Analyzing your inventory data patterns...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Data Table -->
+        <div class="premium-table-container">
+            <div class="premium-table-header">
+                <h2 class="table-title">
+                    📋 Inventory Overview
+                </h2>
+                <div class="table-actions">
+                    <button class="chart-button" onclick="openFilterModal()">🔍 Filter</button>
+                    <button class="chart-button" onclick="openAnalyzeModal()">📊 Analyze</button>
+                </div>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table class="premium-table">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Item Name</th>
+                            <th>Unit</th>
+                            <th>Current Stock</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboardTableBody">
+                        <tr>
+                            <td colspan="5">
+                                <div class="premium-empty-state">
+                                    <div class="empty-icon-container">
+                                        <div class="empty-icon">📦</div>
+                                    </div>
+                                    <h3 class="empty-title">No Items Yet</h3>
+                                    <p class="empty-description">
+                                        Start building your inventory by adding your first items. 
+                                        Our system will help you track and manage everything efficiently.
+                                    </p>
+                                    <a href="#" class="empty-action">
+                                        <span>➕</span>
+                                        Add Your First Item
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Modal -->
+    <div class="modal" id="filterModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🔍 Advanced Filter</h2>
+                <button class="modal-close" onclick="closeFilterModal()">&times;</button>
+            </div>
+            
+            <div class="filter-section">
+                <div class="filter-section-title">📊 Stock Status</div>
+                <div class="filter-checkbox-group">
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filterHigh" checked>
+                        <label for="filterHigh">High Stock</label>
+                    </div>
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filterMedium" checked>
+                        <label for="filterMedium">Medium Stock</label>
+                    </div>
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filterLow" checked>
+                        <label for="filterLow">Low Stock</label>
+                    </div>
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filterCritical" checked>
+                        <label for="filterCritical">Critical</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-section-title">🏷️ Item Criteria</div>
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">Item Code</label>
+                        <input type="text" class="filter-input" id="filterCode" placeholder="Search by code...">
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Item Name</label>
+                        <input type="text" class="filter-input" id="filterName" placeholder="Search by name...">
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Unit Type</label>
+                        <select class="filter-select" id="filterUnit">
+                            <option value="">All Units</option>
+                            <option value="pcs">Pieces</option>
+                            <option value="kg">Kilogram</option>
+                            <option value="liter">Liter</option>
+                            <option value="meter">Meter</option>
+                            <option value="box">Box</option>
+                            <option value="pack">Pack</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Stock Range</label>
+                        <select class="filter-select" id="filterRange">
+                            <option value="">All Ranges</option>
+                            <option value="0-10">0 - 10 units</option>
+                            <option value="11-50">11 - 50 units</option>
+                            <option value="51-100">51 - 100 units</option>
+                            <option value="100+">100+ units</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-actions">
+                <button class="filter-btn secondary" onclick="clearAllFilters()">Clear All</button>
+                <button class="filter-btn primary" onclick="applyFilters()">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analyze Modal -->
+    <div class="modal" id="analyzeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">📊 Inventory Analysis</h2>
+                <button class="modal-close" onclick="closeAnalyzeModal()">&times;</button>
+            </div>
+            
+            <div class="analyze-grid">
+                <div class="analyze-card">
+                    <div class="analyze-card-header">
+                        <div class="analyze-card-icon">📦</div>
+                        <div class="analyze-card-title">Total Value</div>
+                    </div>
+                    <div class="analyze-card-value" id="analyzeValue">$24,750</div>
+                    <div class="analyze-card-description">Total inventory worth</div>
+                </div>
+
+                <div class="analyze-card">
+                    <div class="analyze-card-header">
+                        <div class="analyze-card-icon">🔄</div>
+                        <div class="analyze-card-title">Turnover Rate</div>
+                    </div>
+                    <div class="analyze-card-value" id="analyzeTurnover">68%</div>
+                    <div class="analyze-card-description">Monthly turnover percentage</div>
+                </div>
+
+                <div class="analyze-card">
+                    <div class="analyze-card-header">
+                        <div class="analyze-card-icon">⚡</div>
+                        <div class="analyze-card-title">Fast Movers</div>
+                    </div>
+                    <div class="analyze-card-value" id="analyzeFastMovers">12</div>
+                    <div class="analyze-card-description">High velocity items</div>
+                </div>
+
+                <div class="analyze-card">
+                    <div class="analyze-card-header">
+                        <div class="analyze-card-icon">🐌</div>
+                        <div class="analyze-card-title">Slow Movers</div>
+                    </div>
+                    <div class="analyze-card-value" id="analyzeSlowMovers">3</div>
+                    <div class="analyze-card-description">Items need attention</div>
+                </div>
+            </div>
+
+            <div class="analyze-insights">
+                <div class="analyze-insights-title">💡 Smart Insights</div>
+                <div class="insight-list">
+                    <div class="insight-point">
+                        <div class="insight-point-icon">📈</div>
+                        <div class="insight-point-text">
+                            Your inventory turnover rate of 68% is above industry average. This indicates efficient stock management and good demand forecasting.
+                        </div>
+                    </div>
+                    <div class="insight-point">
+                        <div class="insight-point-icon">⚠️</div>
+                        <div class="insight-point-text">
+                            3 items have low movement in the past 30 days. Consider promotional strategies or inventory optimization for these products.
+                        </div>
+                    </div>
+                    <div class="insight-point">
+                        <div class="insight-point-icon">💰</div>
+                        <div class="insight-point-text">
+                            Electronics category represents 45% of total inventory value. Monitor this category closely for market price fluctuations.
+                        </div>
+                    </div>
+                    <div class="insight-point">
+                        <div class="insight-point-icon">🎯</div>
+                        <div class="insight-point-text">
+                            Optimal reorder point for your top 5 products is recommended to be set 15% higher to avoid stockouts during peak seasons.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle (for demo) -->
+    <div style="position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+    </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <script>
+        // Global variables
+        let currentTheme = 'light';
+        let stockChart = null;
+        let currentChartType = 'trend';
+
+        // Theme functions
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            }
+        }
+
+        // Notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideInNotification 0.3s reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // Counter animation
+        function animateCounter(elementId, targetValue, duration = 2000) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            const startValue = 0;
+            const startTime = performance.now();
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const currentValue = Math.round(startValue + (targetValue - startValue) * easeOutQuart);
+                
+                element.textContent = currentValue;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Chart functions
+        function initializeCharts() {
+            const ctx = document.getElementById('stockChart');
+            if (!ctx) return;
+
+            if (stockChart) {
+                stockChart.destroy();
+            }
+
+            const config = getChartConfig(currentChartType);
+            stockChart = new Chart(ctx, config);
+            updateChartInsight(currentChartType);
+        }
+
+        function getChartConfig(type) {
+            const baseConfig = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20,
+                            color: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary'),
+                            font: {
+                                family: 'SF Pro Display, Inter, system-ui',
+                                size: 12,
+                                weight: 600
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderColor: 'rgba(255, 255, 255, 0.2)',
+                        borderWidth: 1,
+                        cornerRadius: 12,
+                        padding: 12,
+                        displayColors: true,
+                        titleFont: {
+                            size: 14,
+                            weight: 600
+                        },
+                        bodyFont: {
+                            size: 13
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            borderColor: 'rgba(255, 255, 255, 0.2)'
+                        },
+                        ticks: {
+                            color: getComputedStyle(document.documentElement).getPropertyValue('--text-tertiary'),
+                            font: {
+                                size: 11,
+                                weight: 500
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            borderColor: 'rgba(255, 255, 255, 0.2)'
+                        },
+                        ticks: {
+                            color: getComputedStyle(document.documentElement).getPropertyValue('--text-tertiary'),
+                            font: {
+                                size: 11,
+                                weight: 500
+                            }
+                        }
+                    }
+                }
+            };
+
+            switch (type) {
+                case 'trend':
+                    return {
+                        type: 'line',
+                        data: getTrendData(),
+                        options: {
+                            ...baseConfig,
+                            elements: {
+                                line: {
+                                    tension: 0.4,
+                                    borderWidth: 3
+                                },
+                                point: {
+                                    radius: 6,
+                                    hoverRadius: 8,
+                                    borderWidth: 2
+                                }
+                            }
+                        }
+                    };
+
+                case 'distribution':
+                    return {
+                        type: 'doughnut',
+                        data: getDistributionData(),
+                        options: {
+                            ...baseConfig,
+                            cutout: '60%',
+                            scales: {}
+                        }
+                    };
+
+                case 'movement':
+                    return {
+                        type: 'bar',
+                        data: getMovementData(),
+                        options: {
+                            ...baseConfig,
+                            elements: {
+                                bar: {
+                                    borderRadius: 8,
+                                    borderSkipped: false
+                                }
+                            }
+                        }
+                    };
+
+                default:
+                    return { 
+                        type: 'line', 
+                        data: getTrendData(), 
+                        options: baseConfig 
+                    };
+            }
+        }
+
+        function getTrendData() {
+            const last7Days = [];
+            const stockInData = [];
+            const stockOutData = [];
+            
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                last7Days.push(date.toLocaleDateString('id-ID', { month: 'short', day: 'numeric' }));
+                
+                stockInData.push(Math.floor(Math.random() * 20) + 5);
+                stockOutData.push(Math.floor(Math.random() * 15) + 3);
+            }
+
+            return {
+                labels: last7Days,
+                datasets: [
+                    {
+                        label: 'Stock In',
+                        data: stockInData,
+                        borderColor: 'rgb(16, 185, 129)',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true,
+                        pointBackgroundColor: 'rgb(16, 185, 129)',
+                        pointBorderColor: '#fff'
+                    },
+                    {
+                        label: 'Stock Out',
+                        data: stockOutData,
+                        borderColor: 'rgb(239, 68, 68)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        fill: true,
+                        pointBackgroundColor: 'rgb(239, 68, 68)',
+                        pointBorderColor: '#fff'
+                    }
+                ]
+            };
+        }
+
+        function getDistributionData() {
+            return {
+                labels: ['High Stock', 'Medium Stock', 'Low Stock', 'Critical'],
+                datasets: [{
+                    data: [45, 25, 20, 10],
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.8)',
+                        'rgba(245, 158, 11, 0.8)',
+                        'rgba(239, 68, 68, 0.8)',
+                        'rgba(147, 51, 234, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgb(16, 185, 129)',
+                        'rgb(245, 158, 11)',
+                        'rgb(239, 68, 68)',
+                        'rgb(147, 51, 234)'
+                    ],
+                    borderWidth: 3,
+                    hoverOffset: 10
+                }]
+            };
+        }
+
+        function getMovementData() {
+            const categories = ['Electronics', 'Accessories', 'Peripherals', 'Components', 'Software'];
+            const inData = categories.map(() => Math.floor(Math.random() * 50) + 10);
+            const outData = categories.map(() => Math.floor(Math.random() * 40) + 5);
+
+            return {
+                labels: categories,
+                datasets: [
+                    {
+                        label: 'Stock In',
+                        data: inData,
+                        backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                        borderColor: 'rgb(16, 185, 129)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Stock Out',
+                        data: outData,
+                        backgroundColor: 'rgba(239, 68, 68, 0.8)',
+                        borderColor: 'rgb(239, 68, 68)',
+                        borderWidth: 2
+                    }
+                ]
+            };
+        }
+
+        function switchChart(type) {
+            currentChartType = type;
+            
+            document.querySelectorAll('.chart-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(type + 'Tab').classList.add('active');
+            
+            initializeCharts();
+        }
+
+        function updateChartInsight(type) {
+            const insights = {
+                trend: "Stock in trend menunjukkan peningkatan 15% minggu ini. Pergerakan keluar stabil dengan rata-rata 8 unit per hari.",
+                distribution: "45% inventory dalam kondisi stock sehat. 10% item memerlukan perhatian segera untuk restock.",
+                movement: "Electronics kategori paling aktif dengan 65 transaksi. Peripheral menunjukkan pola seasonal yang konsisten."
+            };
+            
+            document.getElementById('chartInsight').textContent = insights[type] || "Analyzing data patterns...";
+        }
+
+        function refreshCharts() {
+            showNotification('🔄 Refreshing chart data...', 'info');
+            setTimeout(() => {
+                initializeCharts();
+                showNotification('✅ Charts updated!', 'success');
+            }, 1000);
+        }
+
+        // Modal functions
+        function openFilterModal() {
+            document.getElementById('filterModal').classList.add('show');
+        }
+
+        function closeFilterModal() {
+            document.getElementById('filterModal').classList.remove('show');
+        }
+
+        function openAnalyzeModal() {
+            document.getElementById('analyzeModal').classList.add('show');
+            setTimeout(() => {
+                animateAnalyzeValues();
+            }, 300);
+        }
+
+        function closeAnalyzeModal() {
+            document.getElementById('analyzeModal').classList.remove('show');
+        }
+
+        function clearAllFilters() {
+            document.getElementById('filterCode').value = '';
+            document.getElementById('filterName').value = '';
+            document.getElementById('filterUnit').value = '';
+            document.getElementById('filterRange').value = '';
+            
+            document.querySelectorAll('.filter-checkbox input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            
+            showNotification('🧹 All filters cleared!', 'info');
+        }
+
+        function applyFilters() {
+            const filters = {
+                code: document.getElementById('filterCode').value.toLowerCase(),
+                name: document.getElementById('filterName').value.toLowerCase(),
+                unit: document.getElementById('filterUnit').value,
+                range: document.getElementById('filterRange').value,
+                statuses: {
+                    high: document.getElementById('filterHigh').checked,
+                    medium: document.getElementById('filterMedium').checked,
+                    low: document.getElementById('filterLow').checked,
+                    critical: document.getElementById('filterCritical').checked
+                }
+            };
+
+            filterTableData(filters);
+            closeFilterModal();
+            showNotification('✅ Filters applied successfully!', 'success');
+        }
+
+        function filterTableData(filters) {
+            const tbody = document.getElementById('dashboardTableBody');
+            const rows = tbody.querySelectorAll('tr');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                if (cells.length < 5) return;
+
+                const code = cells[0].textContent.toLowerCase();
+                const name = cells[1].textContent.toLowerCase();
+                const unit = cells[2].textContent.toLowerCase();
+                const stock = parseInt(cells[3].textContent);
+                const statusElement = cells[4].querySelector('.premium-status-badge');
+                
+                let show = true;
+
+                if (filters.code && !code.includes(filters.code)) show = false;
+                if (filters.name && !name.includes(filters.name)) show = false;
+                if (filters.unit && !unit.includes(filters.unit)) show = false;
+
+                if (filters.range) {
+                    const [min, max] = filters.range.split('-').map(v => parseInt(v.replace('+', '')));
+                    if (filters.range.includes('+')) {
+                        if (stock < min) show = false;
+                    } else {
+                        if (stock < min || stock > max) show = false;
+                    }
+                }
+
+                if (statusElement) {
+                    const isHigh = statusElement.classList.contains('status-high');
+                    const isMedium = statusElement.classList.contains('status-medium');
+                    const isLow = statusElement.classList.contains('status-low');
+                    
+                    if (isHigh && !filters.statuses.high) show = false;
+                    if (isMedium && !filters.statuses.medium) show = false;
+                    if (isLow && (!filters.statuses.low && !filters.statuses.critical)) show = false;
+                }
+
+                if (show) {
+                    row.style.display = '';
+                    row.style.animation = 'fadeIn 0.3s ease-out';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5">
+                            <div class="premium-empty-state">
+                                <div class="empty-icon-container">
+                                    <div class="empty-icon">🔍</div>
+                                </div>
+                                <h3 class="empty-title">No Items Match Your Filters</h3>
+                                <p class="empty-description">
+                                    Try adjusting your filter criteria to see more results.
+                                </p>
+                                <button class="empty-action" onclick="clearAllFilters()">
+                                    <span>🧹</span>
+                                    Clear All Filters
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function animateAnalyzeValues() {
+            animateCounterInElement('analyzeValue', '$24,750', 1500);
+            animateCounterInElement('analyzeTurnover', '68%', 1200);
+            animateCounterInElement('analyzeFastMovers', '12', 1000);
+            animateCounterInElement('analyzeSlowMovers', '3', 800);
+        }
+
+        function animateCounterInElement(elementId, finalText, duration) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            const isPercentage = finalText.includes('%');
+            const isDollar = finalText.includes('$');
+            const targetValue = parseInt(finalText.replace(/[^\d]/g, ''));
+            
+            let startValue = 0;
+            const startTime = performance.now();
+
+            function animate(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const currentValue = Math.round(startValue + (targetValue - startValue) * easeOutQuart);
+                
+                if (isDollar) {
+                    element.textContent = `$${currentValue.toLocaleString()}`;
+                } else if (isPercentage) {
+                    element.textContent = `${currentValue}%`;
+                } else {
+                    element.textContent = currentValue;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+
+        // Demo data population
+        function populateDemoData() {
+            animateCounter('totalItems', 124, 2000);
+            animateCounter('totalStockIn', 18, 1800);
+            animateCounter('totalStockOut', 7, 1600);
+            animateCounter('lowStockItems', 3, 1400);
+
+            setTimeout(() => {
+                initializeCharts();
+            }, 500);
+
+            setTimeout(() => {
+                const tbody = document.getElementById('dashboardTableBody');
+                tbody.innerHTML = `
+                    <tr>
+                        <td><strong>ITM001</strong></td>
+                        <td>Laptop Gaming ASUS ROG</td>
+                        <td>pcs</td>
+                        <td><strong>25</strong></td>
+                        <td><span class="premium-status-badge status-high"><span class="status-dot"></span>Good Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ITM002</strong></td>
+                        <td>Mouse Wireless Logitech</td>
+                        <td>pcs</td>
+                        <td><strong>8</strong></td>
+                        <td><span class="premium-status-badge status-medium"><span class="status-dot"></span>Medium</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ITM003</strong></td>
+                        <td>Keyboard Mechanical RGB</td>
+                        <td>pcs</td>
+                        <td><strong>3</strong></td>
+                        <td><span class="premium-status-badge status-low"><span class="status-dot"></span>Low Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ITM004</strong></td>
+                        <td>Monitor 27" 4K Samsung</td>
+                        <td>pcs</td>
+                        <td><strong>15</strong></td>
+                        <td><span class="premium-status-badge status-high"><span class="status-dot"></span>Good Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ITM005</strong></td>
+                        <td>Webcam HD Logitech C920</td>
+                        <td>pcs</td>
+                        <td><strong>2</strong></td>
+                        <td><span class="premium-status-badge status-low"><span class="status-dot"></span>Critical</span></td>
+                    </tr>
+                `;
+            }, 1000);
+        }
+
+        // Event listeners
+        document.addEventListener('click', function(event) {
+            const filterModal = document.getElementById('filterModal');
+            const analyzeModal = document.getElementById('analyzeModal');
+            
+            if (filterModal && filterModal.classList.contains('show') && event.target === filterModal) {
+                closeFilterModal();
+            }
+            
+            if (analyzeModal && analyzeModal.classList.contains('show') && event.target === analyzeModal) {
+                closeAnalyzeModal();
+            }
+        });
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            
+            updateThemeIcon();
+            
+            const interactiveElements = document.querySelectorAll('.interactive-element');
+            interactiveElements.forEach(element => {
+                element.addEventListener('click', function(e) {
+                    const rect = element.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    element.style.setProperty('--ripple-x', x + 'px');
+                    element.style.setProperty('--ripple-y', y + 'px');
+                });
+            });
+            
+            setTimeout(() => {
+                populateDemoData();
+                
+                setTimeout(() => {
+                    const tableRows = document.querySelectorAll('.premium-table tbody tr');
+                    tableRows.forEach(row => {
+                        row.addEventListener('mouseenter', function() {
+                            this.style.transform = 'translateX(8px)';
+                        });
+                        
+                        row.addEventListener('mouseleave', function() {
+                            this.style.transform = 'translateX(0)';
+                        });
+                    });
+                }, 1500);
+            }, 500);
+        });
+
+        // Make functions globally accessible
+        window.switchChart = switchChart;
+        window.openFilterModal = openFilterModal;
+        window.closeFilterModal = closeFilterModal;
+        window.openAnalyzeModal = openAnalyzeModal;
+        window.closeAnalyzeModal = closeAnalyzeModal;
+        window.clearAllFilters = clearAllFilters;
+        window.applyFilters = applyFilters;
+        window.refreshCharts = refreshCharts;
+        window.toggleTheme = toggleTheme;
+        window.showNotification = showNotification;
+
+        console.log('🚀 Premium Inventory Dashboard loaded successfully!');
+    </script>
+</body>
+</html>
